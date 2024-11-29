@@ -15,7 +15,7 @@ module seg7_check_parity (
             S5 = 1'b0;
             S6 = 1'b0;
             S7 = 1'b1;
-        end else if ({A, B, C, D, E} > 5'b10100) begin
+        end else if ({A, B, C, D, E} > 5'b10011) begin
             // Força todas as saídas como "x" para entradas acima de 210000
             S1 = 1'bx;
             S2 = 1'bx;
@@ -78,7 +78,7 @@ module tb_seg7_check_parity;
             Parity = A ^ B ^ C ^ D ^ E; // Calcula paridade
             #10; // Espera 10 unidades de tempo
 
-            if ({A, B, C, D, E} > 5'b10100) begin
+            if ({A, B, C, D, E} > 5'b10011) begin
                 // Força saída "x" e status "x" para valores acima de 210000
                 $display("%4t\t%b %b %b %b %b    %b     | x  x  x  x  x  x  x | x", 
                          $time, A, B, C, D, E, Parity);
